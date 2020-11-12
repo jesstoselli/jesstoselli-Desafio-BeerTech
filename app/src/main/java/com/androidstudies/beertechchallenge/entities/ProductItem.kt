@@ -8,7 +8,7 @@ data class ProductItem (
     val product: String,
 
     @Json(name = "descricao")
-    val description: String,
+    val quantity: String,
 
     @Json(name = "preco")
     val price: Int,
