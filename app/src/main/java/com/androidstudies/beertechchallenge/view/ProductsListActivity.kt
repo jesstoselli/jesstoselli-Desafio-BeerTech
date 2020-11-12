@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.androidstudies.beertechchallenge.databinding.ActivityProductsListBinding
 
-class ProductsList : AppCompatActivity() {
+class ProductsListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityProductsListBinding.inflate(layoutInflater)

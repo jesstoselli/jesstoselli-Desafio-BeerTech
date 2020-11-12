@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.btnLogin.setOnClickListener {
-            Intent(this, ProductsList::class.java)
+            Intent(this, ProductsListActivity::class.java)
         }
 
     }
