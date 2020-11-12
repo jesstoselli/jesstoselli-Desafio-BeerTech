@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.btnLogin.setOnClickListener {
-            Intent(this, ProductsListActivity::class.java)
+            val intent = Intent(this, ProductsListActivity::class.java)
+            startActivity(intent)
         }
 
     }

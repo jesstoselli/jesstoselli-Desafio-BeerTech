@@ -1,5 +1,6 @@
 package com.androidstudies.beertechchallenge.view
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,11 @@ class ProductItemsAdapter: RecyclerView.Adapter<ProductItemsAdapter.ProductsList
             itemQuantity.text = quantity
             itemPrice.text = "R$ $price"
 
+            if(discount) {
+                val color = Color.parseColor("#0FB816")
+                itemPrice.setTextColor(color)
+            }
+
             val url = imageUrl
 
             if(url.isNotEmpty()) {
@@ -60,7 +66,6 @@ class ProductItemsAdapter: RecyclerView.Adapter<ProductItemsAdapter.ProductsList
                 Glide.with(itemView.context).clear(itemView)
                 itemImage.setImageResource(R.drawable.ic_beer_pint)
             }
-
 
         }
     }

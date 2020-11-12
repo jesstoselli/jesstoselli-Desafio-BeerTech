@@ -2,11 +2,12 @@ package com.androidstudies.beertechchallenge.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-private const val BASE_URL = "https://private-8f4dda-testeabi.apiary-mock.com/produtos"
+private const val BASE_URL = "https://private-8f4dda-testeabi.apiary-mock.com"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -18,8 +19,9 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface ProductsAPIService {
-    @GET("/")
+    @GET("/produtos")
     suspend fun getProducts(): ProductsResponse
+//    suspend fun getProducts(): Response<MutableList<ProductsResponse>>
 }
 
 object ProductsAPI {

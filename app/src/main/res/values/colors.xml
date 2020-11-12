@@ -15,4 +15,5 @@
     <color name="yellow_700">#CA7D0C</color>
     <color name="new_black">#282828</color>
     <color name="grey">#555555</color>
+    <color name="itemOnDiscount">#0FB816</color>
 </resources>
