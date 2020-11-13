@@ -33,9 +33,6 @@ interface ProductsAPIService {
 }
 
 object ProductsAPI {
-
-
-
     val retrofitService: ProductsAPIService by lazy {
         retrofit.create(ProductsAPIService::class.java)
     }

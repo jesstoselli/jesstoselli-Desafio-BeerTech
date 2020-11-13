@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.androidstudies.beertechchallenge.databinding.ActivityMainBinding
+import com.androidstudies.beertechchallenge.entities.LoginPost
+import com.androidstudies.beertechchallenge.repositories.ProductsListRepository
 import com.androidstudies.beertechchallenge.viewmodel.LoginPageViewModel
 
 
@@ -13,7 +15,8 @@ class LoginActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel = LoginPageViewModel()
+        val repository = ProductsListRepository()
+        val viewModel = LoginPageViewModel(repository)
 
         val inputLogin = binding.etLogin.text
         val inputPassword = binding.etPassword.text
@@ -25,10 +28,14 @@ class LoginActivity : AppCompatActivity() {
             warningLogin.text = viewModel.isLoginValid(inputLogin.toString())
             warningPassword.text = viewModel.isPasswordValid(inputPassword.toString())
 
+            if(warningLogin.text.isEmpty() && warningPassword.text.isEmpty()) {
 
-            if(warningLogin.text.length === 0 && warningPassword.text.length === 0) {
+                val login = LoginPost(inputLogin.toString(), inputPassword.toString())
+                viewModel.postLogin(login)
+
                 val intent = Intent(this, ProductsListActivity::class.java)
                 startActivity(intent)
+
             }
         }
 

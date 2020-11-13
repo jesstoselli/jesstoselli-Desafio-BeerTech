@@ -3,6 +3,7 @@ package com.androidstudies.beertechchallenge.repositories
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.androidstudies.beertechchallenge.entities.LoginPost
 import com.androidstudies.beertechchallenge.entities.ProductItem
 import com.androidstudies.beertechchallenge.network.ProductsAPI
 import kotlinx.coroutines.CoroutineScope
@@ -17,6 +18,8 @@ class ProductsListRepository {
 
     val productsResponse: LiveData<List<ProductItem>>
         get() = productsListResponse
+
+    lateinit var errorMessage: String
 
     init {
         getProducts()
@@ -36,6 +39,18 @@ class ProductsListRepository {
 
             }
         }
+    }
+
+    suspend fun postLogin(loginItem: LoginPost) {
+        CoroutineScope((Dispatchers.IO)).launch {
+            try {
+                ProductsAPI.retrofitService.postLogin(loginItem)
+
+            } catch (e: Exception) {
+                errorMessage = e.toString()
+            }
+        }
+
     }
 
 }

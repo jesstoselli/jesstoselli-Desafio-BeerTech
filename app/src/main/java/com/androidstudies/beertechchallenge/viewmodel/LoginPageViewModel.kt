@@ -1,31 +1,34 @@
 package com.androidstudies.beertechchallenge.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.androidstudies.beertechchallenge.entities.LoginPost
+import com.androidstudies.beertechchallenge.repositories.ProductsListRepository
+import kotlinx.coroutines.launch
 
-class LoginPageViewModel: ViewModel() {
+class LoginPageViewModel(private val repository: ProductsListRepository): ViewModel() {
+
+    fun postLogin(loginItem: LoginPost) {
+        viewModelScope.launch {
+            repository.postLogin(loginItem)
+        }
+    }
 
     fun isLoginValid(login: String): String {
-        if (login.length === 0) {
-            return "Campo precisa estar preenchido."
-        }
-        else if (login.length in 1..5) {
-            return "Login precisa ter ao menos 6 caracteres."
-        }
-        else {
-            return ""
+        return when (login.length) {
+            0 -> "Campo precisa estar preenchido."
+            in 1..5 -> "Login precisa ter ao menos 6 caracteres."
+            else -> ""
         }
     }
 
     fun isPasswordValid(password: String): String {
-        if (password.length === 0) {
-            return "Campo precisa estar preenchido."
+        return when(password.length) {
+            0 -> "Campo precisa estar preenchido."
+            in 1..5 -> "Senha precisa ter ao menos 6 caracteres."
+            else -> ""
         }
-        else if (password.length in 1..7) {
-            return "Senha precisa ter ao menos 8 caracteres."
-        }
-        else {
-            return ""
-        }
+
     }
 
 }
