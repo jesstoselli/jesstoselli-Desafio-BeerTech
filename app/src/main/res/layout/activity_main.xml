@@ -36,7 +36,7 @@
         android:id="@+id/et_password"
         android:autofillHints="Senha"
         android:hint="@string/hint_senha"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         style="@style/input_text"
         />
     <TextView

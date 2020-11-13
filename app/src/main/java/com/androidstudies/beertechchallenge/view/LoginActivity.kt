@@ -3,6 +3,7 @@ package com.androidstudies.beertechchallenge.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.androidstudies.beertechchallenge.databinding.ActivityMainBinding
 import com.androidstudies.beertechchallenge.entities.LoginPost
 import com.androidstudies.beertechchallenge.repositories.ProductsListRepository
@@ -25,13 +26,16 @@ class LoginActivity : AppCompatActivity() {
         val warningPassword = binding.tvPasswordWarning
 
         binding.btnLogin.setOnClickListener {
-            warningLogin.text = viewModel.isLoginValid(inputLogin.toString())
-            warningPassword.text = viewModel.isPasswordValid(inputPassword.toString())
+            warningLogin.text = viewModel.isValid(inputLogin.toString())
+            warningPassword.text = viewModel.isValid(inputPassword.toString())
 
             if(warningLogin.text.isEmpty() && warningPassword.text.isEmpty()) {
-
                 val login = LoginPost(inputLogin.toString(), inputPassword.toString())
-                viewModel.postLogin(login)
+
+                val loginMessage =  viewModel.successfulLogin(login)
+
+
+                Toast.makeText(this, loginMessage, Toast.LENGTH_LONG).show()
 
                 val intent = Intent(this, ProductsListActivity::class.java)
                 startActivity(intent)
