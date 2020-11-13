@@ -2,6 +2,7 @@ package com.androidstudies.beertechchallenge.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -19,9 +20,7 @@ class ProductsListActivity : AppCompatActivity() {
         val binding = ActivityProductsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val remoteService = ProductsAPI.retrofitService
-        val repository = ProductsListRepository(remoteService)
-
+        val repository = ProductsListRepository()
         val viewModelFactory = ProductsListViewModelFactory(repository)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(ProductsListViewModel::class.java)
         val list = viewModel.productsList

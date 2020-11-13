@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidstudies.beertechchallenge.R
 import com.androidstudies.beertechchallenge.entities.ProductItem
 import com.bumptech.glide.Glide
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class ProductItemsAdapter: RecyclerView.Adapter<ProductItemsAdapter.ProductsListViewHolder>() {
     var data = listOf<ProductItem>()
@@ -44,9 +46,10 @@ class ProductItemsAdapter: RecyclerView.Adapter<ProductItemsAdapter.ProductsList
         private val itemPrice = itemView.findViewById<TextView>(R.id.tv_productPrice)
         private val itemImage = itemView.findViewById<ImageView>(R.id.iv_productImage)
 
-        fun bind(product: String, quantity: String, price: Int, discount: Boolean, imageUrl: String) {
+        fun bind(product: String, quantity: String, price: Float, discount: Boolean, imageUrl: String) {
             itemTitle.text = product
             itemQuantity.text = quantity
+
             itemPrice.text = "R$ $price"
 
             if(discount) {
@@ -54,11 +57,9 @@ class ProductItemsAdapter: RecyclerView.Adapter<ProductItemsAdapter.ProductsList
                 itemPrice.setTextColor(color)
             }
 
-            val url = imageUrl
-
-            if(url.isNotEmpty()) {
+            if(imageUrl.isNotEmpty()) {
                 Glide.with(itemView.context)
-                    .load(url)
+                    .load(imageUrl)
                     .placeholder(R.drawable.ic_beer_pint)
                     .error(R.drawable.ic_beer_pint)
                     .into(itemImage)

@@ -11,7 +11,7 @@ data class ProductItem (
     val quantity: String,
 
     @Json(name = "preco")
-    val price: Int,
+    val price: Float,
 
     @Json(name = "desconto")
     val discount: Boolean,
