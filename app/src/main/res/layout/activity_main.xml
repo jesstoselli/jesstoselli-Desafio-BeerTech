@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    tools:context=".view.MainActivity">
+    tools:context=".view.LoginActivity">
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -20,25 +20,31 @@
 
     <EditText
         android:id="@+id/et_login"
+        android:autofillHints="Nome"
+        android:hint="@string/hint_login"
+        android:inputType="text"
+        style="@style/input_text" />
+
+    <TextView
+        android:id="@+id/tv_loginWarning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/hint_nome"
-        android:autofillHints="Nome" />
+        android:textColor="@color/red_500"
+        tools:text="Esse campo não pode ficar vazio." />
 
     <EditText
         android:id="@+id/et_password"
+        android:autofillHints="Senha"
+        android:hint="@string/hint_senha"
+        android:inputType="numberPassword"
+        style="@style/input_text"
+        />
+    <TextView
+        android:id="@+id/tv_passwordWarning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:inputType="numberPassword"
-        android:hint="@string/hint_senha"
-        android:autofillHints="Senha" />
+        android:textColor="@color/red_500"
+        tools:text="Esse campo não pode ficar vazio." />
 
     <Button
         android:id="@+id/btn_login"

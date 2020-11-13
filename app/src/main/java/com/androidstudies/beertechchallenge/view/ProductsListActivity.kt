@@ -2,14 +2,10 @@ package com.androidstudies.beertechchallenge.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import com.androidstudies.beertechchallenge.R
 import com.androidstudies.beertechchallenge.databinding.ActivityProductsListBinding
-import com.androidstudies.beertechchallenge.network.ProductsAPI
 import com.androidstudies.beertechchallenge.repositories.ProductsListRepository
 import com.androidstudies.beertechchallenge.viewmodel.ProductsListViewModel
 import com.androidstudies.beertechchallenge.viewmodel.ProductsListViewModelFactory

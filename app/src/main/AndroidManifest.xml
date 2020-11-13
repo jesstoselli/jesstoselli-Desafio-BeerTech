@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeerTechChallenge">
         <activity android:name=".view.ProductsListActivity"></activity>
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -19,8 +19,6 @@ class ProductsListRepository {
         get() = productsListResponse
 
     init {
-
-        Log.w("DBG","Init ProductsListRepository");
         getProducts()
     }
 
@@ -28,38 +26,16 @@ class ProductsListRepository {
     private fun getProducts() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-             Log.w("DBG","getProducts call");
               val response = ProductsAPI.retrofitService.getBeers().body()
-                Log.w("DBG","getProducts returned $response");
                 productsListResponse.postValue(response)
 
             } catch (e: Exception) {
-                Log.w("DBG","${e.message} getProducts ERROR");
                 withContext(Dispatchers.Main) {
                     productsListResponse.postValue(null)
-                } //todo: improve remote access error
+                }
 
             }
         }
     }
 
 }
-
-//class BeersListRepository {
-//    private val beersListResponse = MutableLiveData<List<Beers>>()
-//
-//    val  beersList: LiveData<List<Beers>>
-//        get() = beersListResponse
-//
-//    init {
-//        getBeersList()
-//    }
-//
-//    private fun getBeersList() {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            try {
-//                val listResult = BeersApi.retrofitService.getBeers().body()
-//                beersListResponse.postValue(listResult)
-//
-//            } catch (e: Exception) {
-//                w
