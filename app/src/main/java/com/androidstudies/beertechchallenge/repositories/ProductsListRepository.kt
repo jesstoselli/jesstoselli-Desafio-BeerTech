@@ -5,8 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.androidstudies.beertechchallenge.entities.LoginPost
 import com.androidstudies.beertechchallenge.entities.ProductItem
+import com.androidstudies.beertechchallenge.network.LoginPostResponse
 import com.androidstudies.beertechchallenge.network.ProductsAPI
 import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.Exception
 
 class ProductsListRepository {
@@ -14,11 +18,6 @@ class ProductsListRepository {
     private val productsListResponse = MutableLiveData<List<ProductItem>>()
     val productsResponse: LiveData<List<ProductItem>>
         get() = productsListResponse
-
-    private val loginPostResponse = MutableLiveData<String>()
-    val loginPostResponseMessage: LiveData<String>
-        get() = loginPostResponse
-
 
     init {
         getProducts()
@@ -40,22 +39,6 @@ class ProductsListRepository {
         }
     }
 
-    suspend fun postLogin(loginItem: LoginPost) {
-        CoroutineScope((Dispatchers.IO)).launch {
+    suspend fun postLogin(loginItem: LoginPost) = ProductsAPI.retrofitService.postLogin(loginItem)
 
-            try {
-                val response = ProductsAPI.retrofitService.postLogin(loginItem)
-
-                Log.i("Resposta do POST Req", "${response.body()?.reposta}")
-
-                loginPostResponse.postValue(response.body()?.reposta)
-
-
-            } catch (e: Exception) {
-//                loginPostResponse.postValue(e.message.toString())
-                Log.i("Exception do POST Req", "${e.message}")
-            }
-        }
-
-    }
 }

@@ -1,39 +1,31 @@
 package com.androidstudies.beertechchallenge.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androidstudies.beertechchallenge.entities.LoginPost
 import com.androidstudies.beertechchallenge.repositories.ProductsListRepository
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class LoginPageViewModel(private val repository: ProductsListRepository): ViewModel() {
 
-    private fun postLogin  (loginItem: LoginPost) {
-        viewModelScope.launch {
+
+     fun successfulLogin(loginItem: LoginPost, myCallback: (result: String?) -> Unit)  {
+            var response: String
+
+        CoroutineScope(Dispatchers.IO).launch {
             repository.postLogin(loginItem)
+            val response =  repository.postLogin(loginItem).body()?.reposta
+
+            var message = when(response) {
+                "Sucesso" -> "Bem-vindo(a), ${loginItem.login}"
+                else -> "Erro ao realizar o login."
+            }
+
+            myCallback(message)
         }
-    }
-
-     fun successfulLogin(loginItem: LoginPost): String {
-         runBlocking { postLogin(loginItem) }
-        val message = repository.loginPostResponseMessage
-
-        Log.i("Inside ViewModel", "${message.value}")
-
-//        val response = repository.loginPostResponseMessage
-//        Log.i("Inside successfulLogin", response)
-
-//        return if(response !== "200") {
-//            "Erro ao realizar o login."
-//        }
-//        else {
-//            "Bem-vindo(a), ${loginItem.login}"
-//        }
-
-        return  "Bem-vindo(a), ${loginItem.login}"
-
     }
 
     fun isValid(item: String): String {
