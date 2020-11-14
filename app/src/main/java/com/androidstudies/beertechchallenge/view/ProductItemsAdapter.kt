@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidstudies.beertechchallenge.R
 import com.androidstudies.beertechchallenge.entities.ProductItem
 import com.bumptech.glide.Glide
-import java.math.RoundingMode
 import java.text.DecimalFormat
 
 class ProductItemsAdapter: RecyclerView.Adapter<ProductItemsAdapter.ProductsListViewHolder>() {
@@ -50,7 +49,8 @@ class ProductItemsAdapter: RecyclerView.Adapter<ProductItemsAdapter.ProductsList
             itemTitle.text = product
             itemQuantity.text = quantity
 
-            itemPrice.text = "R$ $price"
+
+            itemPrice.text = "R$ ${DecimalFormat("#.00").format(price)}"
 
             if(discount) {
                 val color = Color.parseColor("#0FB816")

@@ -3,14 +3,11 @@ package com.androidstudies.beertechchallenge.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
-import android.util.Log
 import android.widget.Toast
 import com.androidstudies.beertechchallenge.databinding.ActivityMainBinding
 import com.androidstudies.beertechchallenge.entities.LoginPost
 import com.androidstudies.beertechchallenge.repositories.ProductsListRepository
 import com.androidstudies.beertechchallenge.viewmodel.LoginPageViewModel
-import kotlinx.coroutines.runBlocking
 
 
 class LoginActivity : AppCompatActivity() {

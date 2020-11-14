@@ -1,16 +1,11 @@
 package com.androidstudies.beertechchallenge.repositories
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.androidstudies.beertechchallenge.entities.LoginPost
 import com.androidstudies.beertechchallenge.entities.ProductItem
-import com.androidstudies.beertechchallenge.network.LoginPostResponse
 import com.androidstudies.beertechchallenge.network.ProductsAPI
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.lang.Exception
 
 class ProductsListRepository {
